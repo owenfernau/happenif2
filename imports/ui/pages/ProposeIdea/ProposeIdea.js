@@ -9,14 +9,29 @@ class ProposeIdea extends React.Component {
   }
 
   render() {
-    return (<div className="ProposeIdea">
+    return (
+
+      <div className="ProposeIdea">
       <h3>Propose an Idea</h3>
-    </div>);
+      //Testing...
+      <h3> Hello, {this.props.title}, what up.</h3>
+      //<form>
+        //Damn, now nothing is showing up.
+        //is name necessary here?
+        /*says these input tags needs closing. what?
+        <input type="text" name="proposal"/>
+        <input type="text" name="reasoning"/>
+        */
+      //</form>
+    </div>
+
+    );
   }
 }
 
 ProposeIdea.propTypes = {
   // prop: PropTypes.string.isRequired,
+
 };
 
 export default ProposeIdea;
