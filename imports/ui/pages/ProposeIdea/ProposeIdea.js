@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import IdeaEditor from '../../components/IdeaEditor/IdeaEditor.js'
 
 class ProposeIdea extends React.Component {
   constructor(props) {
@@ -9,21 +10,13 @@ class ProposeIdea extends React.Component {
   }
 
   render() {
+    const {history} = this.props; // Destructuring. Assume this.props is a bunch of grapes and the { history } part is us plucking off the "history" grape. 
     return (
 
       <div className="ProposeIdea">
-      <h3>Propose an Idea</h3>
-      //Testing...
-      <h3> Hello, {this.props.title}, what up.</h3>
-      //<form>
-        //Damn, now nothing is showing up.
-        //is name necessary here?
-        /*says these input tags needs closing. what?
-        <input type="text" name="proposal"/>
-        <input type="text" name="reasoning"/>
-        */
-      //</form>
-    </div>
+        <h3 className="page-header">Propose an Idea</h3>
+        <IdeaEditor history={history} />
+      </div>
 
     );
   }

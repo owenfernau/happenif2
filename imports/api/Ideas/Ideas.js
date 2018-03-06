@@ -18,7 +18,11 @@ Ideas.deny({
 });
 
 Ideas.schema = new SimpleSchema({
-  title: {
+  owner: {
+    type: String,
+    label: 'The ID of the owner of this idea.',
+  },
+  idea: {
     type: String, // Primitive type. String, Array, Number, Integer, Object
     label: 'The title of the idea.',
   },
@@ -27,11 +31,13 @@ Ideas.schema = new SimpleSchema({
     label: 'The reasoning behind the idea.',
   },
   votes: {
-    type: Integer,
+    type: Number,
+    defaultValue: 0,
     label: 'The number of votes for this idea.',
   },
   voters: {
     type: Array, // ['235235235', '235i2p3oi5lkjsklj']
+    defaultValue: [],
     label: 'Users who have upvoted or downvoted this idea.',
   },
   'voters.$': {
