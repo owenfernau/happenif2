@@ -18,6 +18,10 @@ import ViewDocument from '../../pages/ViewDocument/ViewDocument';
 import EditDocument from '../../pages/EditDocument/EditDocument';
 import ProposeIdea from '../../pages/ProposeIdea/ProposeIdea';
 import ViewIdea from '../../pages/ViewIdea/ViewIdea';
+{/*this import below might not work yet.*/}
+{/*
+import Ideas from '../../pages/Ideas/Ideas'
+*/}
 import Signup from '../../pages/Signup/Signup';
 import Login from '../../pages/Login/Login';
 import Logout from '../../pages/Logout/Logout';
