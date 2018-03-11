@@ -24,7 +24,7 @@ import DocumentsCollection from '../../../api/Documents/Documents';
 import { timeago, monthDayYearAtTime } from '../../../modules/dates';
 import Loading from '../../components/Loading/Loading';
 
-import './Documents.scss';
+import './Ideas.scss';
 
 const handleRemove = (documentId) => {
   if (confirm('Are you sure? This is permanent!')) {
@@ -43,7 +43,7 @@ const Documents = ({
 }) => (!loading ? (
   <div className="Documents">
     <div className="page-header clearfix">
-      <h4 className="pull-left">Documents</h4>
+      <h4 className="pull-left">Ideas</h4>
       <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Document</Link>
     </div>
     {documents.length ?
