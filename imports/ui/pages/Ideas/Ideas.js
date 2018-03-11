@@ -21,18 +21,21 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Bert } from 'meteor/themeteorchef:bert';
 import DocumentsCollection from '../../../api/Documents/Documents';
+{/*don't know if this ideas import will work*/}
+import IdeasCollection from '../../../api/Ideas/Ideas';
+{/**/}
 import { timeago, monthDayYearAtTime } from '../../../modules/dates';
 import Loading from '../../components/Loading/Loading';
 
 import './Ideas.scss';
 
-const handleRemove = (documentId) => {
-  if (confirm('Are you sure? This is permanent!')) {
-    Meteor.call('documents.remove', documentId, (error) => {
+const handleRemove = (IdeaId) => {
+  if (confirm('Make sure you want to do this.')) {
+    Meteor.call('documents.remove', IdeaId, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
-        Bert.alert('Document deleted!', 'success');
+        Bert.alert('Idea deleted!', 'success');
       }
     });
   }
@@ -44,13 +47,14 @@ const Documents = ({
   <div className="Documents">
     <div className="page-header clearfix">
       <h4 className="pull-left">Ideas</h4>
-      <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Document</Link>
+      <Link className="btn btn-success pull-right" to={`${match.url}/propose`}>New Idea</Link>
     </div>
     {documents.length ?
       <Table responsive>
         <thead>
           <tr>
-            <th>Title</th>
+            <th>Idea Name</th>
+            <th>Group</th>
             <th>Last Updated</th>
             <th>Created</th>
             <th />
@@ -63,6 +67,7 @@ const Documents = ({
           }) => (
             <tr key={_id}>
               <td>{title}</td>
+              <td>get idea group-property</td>
               <td>{timeago(updatedAt)}</td>
               <td>{monthDayYearAtTime(createdAt)}</td>
               <td>

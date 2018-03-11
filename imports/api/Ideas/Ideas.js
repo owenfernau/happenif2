@@ -44,10 +44,12 @@ Ideas.schema = new SimpleSchema({
     type: String,
     label: 'The ID of a user who has voted.',
   },
+
   group: {
     type: String,
     label: 'The group to which this idea belongs.'
-  }
+  },
+
 });
 
 // { Title: 'Test' }
