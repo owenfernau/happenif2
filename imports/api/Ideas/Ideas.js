@@ -47,7 +47,9 @@ Ideas.schema = new SimpleSchema({
 
   group: {
     type: String,
-    label: 'The group to which this idea belongs.'
+    label: 'The group to which this idea belongs.',
+    //make it so it works and is not optional
+    //optional: true,
   },
 
 });

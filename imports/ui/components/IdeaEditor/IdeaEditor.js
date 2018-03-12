@@ -1,4 +1,6 @@
 /* eslint-disable max-len, no-return-assign */
+/*messed something up with the group part of the form.
+Does it need its corresponding, schema or prop-types*/
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -18,6 +20,9 @@ class IdeaEditor extends React.Component {
         reasoning: {
           required: true,
         },
+        group: {
+          required: true,
+        }
       },
       messages: {
         idea: {
@@ -26,6 +31,10 @@ class IdeaEditor extends React.Component {
         reasoning: {
           required: 'Dude. What\'s your reasoning?',
         },
+        group: {
+          required: 'Our bad, but it\'s got to be for a certain group.',
+        }
+
       },
       submitHandler() { component.handleSubmit(component.form); },
     });
@@ -77,6 +86,18 @@ class IdeaEditor extends React.Component {
             placeholder="Because the music sucks and will depress people more."
           />
         </FormGroup>
+        {/*trying to add a group formGroup*/}
+        <FormGroup>
+          <ControlLabel>Group</ControlLabel>
+          <textarea
+            className="form-control"
+            name="group"
+
+            defaultValue={idea && idea.group}
+            placeholder="The group for which your idea is relevant."
+          />
+        </FormGroup>
+        {/*Might not work.*/}
         <Button type="submit" bsStyle="success">
           {idea && idea._id ? 'Save Changes' : 'Add Idea'}
         </Button>
