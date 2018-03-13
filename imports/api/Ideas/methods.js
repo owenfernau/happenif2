@@ -24,6 +24,7 @@ Meteor.methods({
       _id: String,
       idea: String,
       reasoning: String,
+      group: String,
     });
 
     try {
