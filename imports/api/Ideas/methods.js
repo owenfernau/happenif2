@@ -9,6 +9,8 @@ Meteor.methods({
     check(idea, {
       idea: String,
       reasoning: String,
+      //adding group-property
+      group: String,
     });
 
     try {

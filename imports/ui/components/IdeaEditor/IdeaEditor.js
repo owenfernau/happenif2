@@ -32,7 +32,7 @@ class IdeaEditor extends React.Component {
           required: 'Dude. What\'s your reasoning?',
         },
         group: {
-          required: 'Our bad, but it\'s got to be for a certain group.',
+          required: 'What organization is this idea for?',
         }
 
       },
@@ -47,6 +47,8 @@ class IdeaEditor extends React.Component {
     const idea = {
       idea: form.idea.value.trim(),
       reasoning: form.reasoning.value.trim(),
+      /*adding the group thing.*/
+      group: form.group.value.trim()
     };
 
     if (existingIdea) idea._id = existingIdea;
@@ -68,7 +70,7 @@ class IdeaEditor extends React.Component {
     return (
       <form ref={form => (this.form = form)} onSubmit={event => event.preventDefault()}>
         <FormGroup>
-          <ControlLabel>Idea</ControlLabel>
+          <ControlLabel>idea</ControlLabel>
           <input
             type="text"
             className="form-control"
@@ -78,7 +80,7 @@ class IdeaEditor extends React.Component {
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>Reasoning</ControlLabel>
+          <ControlLabel>reasoning</ControlLabel>
           <textarea
             className="form-control"
             name="reasoning"
@@ -88,7 +90,7 @@ class IdeaEditor extends React.Component {
         </FormGroup>
         {/*trying to add a group formGroup*/}
         <FormGroup>
-          <ControlLabel>Group</ControlLabel>
+          <ControlLabel>group</ControlLabel>
           <textarea
             className="form-control"
             name="group"
