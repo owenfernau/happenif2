@@ -10,7 +10,7 @@ maybe also the ones they
 
 Right now it's all just
 copy pasted from the
-documents file
+ideas file
 */
 
 import React from 'react';
@@ -20,8 +20,6 @@ import { Table, Alert, Button } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Bert } from 'meteor/themeteorchef:bert';
-import DocumentsCollection from '../../../api/Documents/Documents';
-{/*don't know if this ideas import will work*/}
 import IdeasCollection from '../../../api/Ideas/Ideas';
 {/**/}
 import { timeago, monthDayYearAtTime } from '../../../modules/dates';
@@ -31,7 +29,7 @@ import './Ideas.scss';
 
 const handleRemove = (IdeaId) => {
   if (confirm('Make sure you want to do this.')) {
-    Meteor.call('documents.remove', IdeaId, (error) => {
+    Meteor.call('ideas.remove', IdeaId, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
@@ -41,18 +39,29 @@ const handleRemove = (IdeaId) => {
   }
 };
 
-const Documents = ({
-  loading, documents, match, history,
+const vote = (type, ideaId) => {
+  Meteor.call(type === 'upvote' ? 'ideas.upvote' : 'ideas.downvote', ideaId, (error, response) => {
+    if (error) {
+      Bert.alert(error.reason, 'danger');
+    } else {
+      Bert.alert('Vote submitted!', 'success');
+    }
+  });
+};
+
+const Ideas = ({
+  loading, ideas, match, history,
 }) => (!loading ? (
-  <div className="Documents">
+  <div className="Ideas">
     <div className="page-header clearfix">
       <h4 className="pull-left">My Ideas</h4>
       <Link className="btn btn-success pull-right" to={`${match.url}/propose`}>New Idea</Link>
     </div>
-    {documents.length ?
+    {ideas.length ?
       <Table responsive>
         <thead>
           <tr>
+            <th />
             <th>Idea Name</th>
             <th>Group</th>
             <th>Last Updated</th>
@@ -62,12 +71,17 @@ const Documents = ({
           </tr>
         </thead>
         <tbody>
-          {documents.map(({
-            _id, title, createdAt, updatedAt,
+          {ideas.map(({
+            _id, idea, group, votes, createdAt, updatedAt,
           }) => (
             <tr key={_id}>
-              <td>{title}</td>
-              <td>get idea group-property</td>
+              <td>
+                <button className="upvote" onClick={() => vote('upvote', _id)}><i className="fa fa-chevron-up" /></button>
+                <p className="votes">{votes}</p>
+                <button className="downvote" onClick={() => vote('downvote', _id)}><i className="fa fa-chevron-down" /></button>
+              </td>
+              <td>{idea}</td>
+              <td>{group || 'No Group'}</td>
               <td>{timeago(updatedAt)}</td>
               <td>{monthDayYearAtTime(createdAt)}</td>
               <td>
@@ -91,21 +105,21 @@ const Documents = ({
             </tr>
           ))}
         </tbody>
-      </Table> : <Alert bsStyle="warning">No documents yet!</Alert>}
+      </Table> : <Alert bsStyle="warning">No ideas yet!</Alert>}
   </div>
 ) : <Loading />);
 
-Documents.propTypes = {
+Ideas.propTypes = {
   loading: PropTypes.bool.isRequired,
-  documents: PropTypes.arrayOf(PropTypes.object).isRequired,
+  ideas: PropTypes.arrayOf(PropTypes.object).isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('documents');
+  const subscription = Meteor.subscribe('ideas');
   return {
     loading: !subscription.ready(),
-    documents: DocumentsCollection.find().fetch(),
+    ideas: IdeasCollection.find().fetch(), // [{ }]
   };
-})(Documents);
+})(Ideas);

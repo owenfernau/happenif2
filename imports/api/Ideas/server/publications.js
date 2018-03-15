@@ -3,7 +3,7 @@ import { check } from 'meteor/check';
 import Ideas from '../Ideas';
 
 Meteor.publish('ideas', function ideas() {
-  return Ideas.find({ owner: this.userId });
+  return Ideas.find();
 });
 
 // Note: ideas.view is also used when editing an existing document.

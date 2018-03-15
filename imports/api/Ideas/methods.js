@@ -44,6 +44,54 @@ Meteor.methods({
       handleMethodException(exception);
     }
   },
+  'ideas.upvote': function ideasUpvote(ideaId) {
+    check(ideaId, String);
+
+    try {
+      const hasVoted = !!Ideas.findOne({ _id: ideaId, voters: { $in: [this.userId] } });
+
+      if (hasVoted) {
+        throw new Meteor.Error('500', 'Sorry, you\'ve already voted on this idea!');
+      } else {
+        Ideas.update({ _id: ideaId }, {
+          $inc: {
+            votes: 1,
+          },
+          $addToSet: {
+            voters: this.userId,
+          },
+        });
+      }
+
+    } catch (exception) {
+      handleMethodException(exception);
+    }
+  },
+
+  'ideas.downvote': function ideasDownvote(ideaId) {
+    check(ideaId, String);
+
+    try {
+      const hasVoted = !!Ideas.findOne({ _id: ideaId, voters: { $in: [this.userId] } });
+
+      if (hasVoted) {
+        throw new Meteor.Error('500', 'Sorry, you\'ve already voted on this idea!');
+      } else {
+        Ideas.update({ _id: ideaId }, {
+          $inc: {
+            votes: -1,
+          },
+          $addToSet: {
+            voters: this.userId,
+          },
+        });
+      }
+
+    } catch (exception) {
+      handleMethodException(exception);
+    }
+  },  
+
 });
 
 rateLimit({

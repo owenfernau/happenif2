@@ -18,6 +18,7 @@ import ViewDocument from '../../pages/ViewDocument/ViewDocument';
 import EditDocument from '../../pages/EditDocument/EditDocument';
 import ProposeIdea from '../../pages/ProposeIdea/ProposeIdea';
 import ViewIdea from '../../pages/ViewIdea/ViewIdea';
+import EditIdea from '../../pages/EditIdea/EditIdea';
 {/*this import below might not work yet.*/}
 {/* */}
 import Ideas from '../../pages/Ideas/Ideas';
@@ -75,6 +76,7 @@ class App extends React.Component {
                 <Authenticated exact path="/ideas" component={Ideas} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/ideas/propose" component={ProposeIdea} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/ideas/:_id" component={ViewIdea} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/ideas/:_id/edit" component={EditIdea} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Public path="/signup" component={Signup} {...props} {...state} />
                 <Public path="/login" component={Login} {...props} {...state} />
