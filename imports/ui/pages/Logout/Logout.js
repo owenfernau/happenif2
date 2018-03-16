@@ -19,6 +19,7 @@ class Logout extends React.Component {
         />
         {/*<h1>Bye!</h1>*/}
         <p>{}</p>
+        <h1>bye</h1>
         {/*<p>{'Don\'t forget to like and follow Clever Beagle elsewhere on the web:'}</p>*/}
         <ul className="FollowUsElsewhere">
           <li><a href="https://facebook.com/cleverbeagle"><Icon icon="facebook-official" /></a></li>
