@@ -38,21 +38,9 @@ const renderIdea = (idea, match, history) => (idea ? (
     { idea && idea.reasoning }
     <h5>VOTE COUNT: { idea && idea.votes}</h5>
 
-/*
-    {ideas.map(({
-      _id, idea, group, votes, createdAt, updatedAt,
-    }) => (
-      <tr key={_id}>
-        <td>
-          <button className="upvote" onClick={() => vote('upvote', _id)}><i className="fa fa-chevron-up" /></button>
-          <p className="votes">{votes}</p>
-          <button className="downvote" onClick={() => vote('downvote', _id)}><i className="fa fa-chevron-down" /></button>
-        </td>
-    ))}
 
-*/
-  /*  <button className="upvote" onClick={() => vote('upvote', _id)}><i className="fa fa-chevron-up" /></button>
-    <button className="downvote" onClick={() => vote('downvote', _id)}><i className="fa fa-chevron-down" /></button>*/
+    <button className="upvote" onClick={() => vote('upvote', _id)}><i className="fa fa-chevron-up" /></button>
+    <button className="downvote" onClick={() => vote('downvote', _id)}><i className="fa fa-chevron-down" /></button>
 
   </div>
 ) : <NotFound />);
