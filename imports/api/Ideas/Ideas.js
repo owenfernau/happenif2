@@ -52,6 +52,19 @@ Ideas.schema = new SimpleSchema({
     //optional: true,
   },
 
+  /*
+
+
+  createdAt: {
+    type: String,
+    label: 'The date this idea was created.',
+    autoValue() {
+      if (this.isInsert) return (new Date()).toISOString();
+    },
+  },
+
+  */
+
 });
 
 // { Title: 'Test' }

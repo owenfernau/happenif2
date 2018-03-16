@@ -24,7 +24,7 @@ const handleRemove = (ideaId, history) => {
 const renderIdea = (idea, match, history) => (idea ? (
   <div className="ViewIdea">
     <div className="page-header clearfix">
-      <h4 className="pull-left">{ idea && idea.idea }</h4>
+      <h3 className="pull-left">{ idea && idea.idea }</h3>
       <ButtonToolbar className="pull-right">
         <ButtonGroup bsSize="small">
           <Button onClick={() => history.push(`${match.url}/edit`)}>Edit</Button>
@@ -33,8 +33,15 @@ const renderIdea = (idea, match, history) => (idea ? (
           </Button>
         </ButtonGroup>
       </ButtonToolbar>
+      <h6>{ idea && "      #" && idea.group}</h6>
     </div>
     { idea && idea.reasoning }
+    <h5>VOTE COUNT: { idea && idea.votes}</h5>
+
+
+    <button className="upvote" onClick={() => vote('upvote', _id)}><i className="fa fa-chevron-up" /></button>
+    <button className="downvote" onClick={() => vote('downvote', _id)}><i className="fa fa-chevron-down" /></button>
+
   </div>
 ) : <NotFound />);
 
