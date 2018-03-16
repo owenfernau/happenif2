@@ -21,6 +21,16 @@ const handleRemove = (ideaId, history) => {
   }
 };
 
+const vote = (type, ideaId) => {
+  Meteor.call(type === 'upvote' ? 'ideas.upvote' : 'ideas.downvote', ideaId, (error, response) => {
+    if (error) {
+      Bert.alert(error.reason, 'danger');
+    } else {
+      Bert.alert('Vote submitted!', 'success');
+    }
+  });
+};
+
 const renderIdea = (idea, match, history) => (idea ? (
   <div className="ViewIdea">
     <div className="page-header clearfix">
@@ -39,8 +49,12 @@ const renderIdea = (idea, match, history) => (idea ? (
     <h5>VOTE COUNT: { idea && idea.votes}</h5>
 
 
-    <button className="upvote" onClick={() => vote('upvote', _id)}><i className="fa fa-chevron-up" /></button>
-    <button className="downvote" onClick={() => vote('downvote', _id)}><i className="fa fa-chevron-down" /></button>
+    <button className="upvote" onClick={() => vote('upvote', idea._id)}><i className="fa fa-chevron-up" /></button>
+    <button className="downvote" onClick={() => vote('downvote', idea._id)}><i className="fa fa-chevron-down" /></button>
+
+
+
+
 
   </div>
 ) : <NotFound />);
