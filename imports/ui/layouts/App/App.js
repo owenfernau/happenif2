@@ -19,10 +19,11 @@ import EditDocument from '../../pages/EditDocument/EditDocument';
 import ProposeIdea from '../../pages/ProposeIdea/ProposeIdea';
 import ViewIdea from '../../pages/ViewIdea/ViewIdea';
 import EditIdea from '../../pages/EditIdea/EditIdea';
-{/*this import below might not work yet.*/}
-{/* */}
 import Ideas from '../../pages/Ideas/Ideas';
-{/* import Groups from '../../pages/Groups/Groups';*/}
+{/*this import below might not work yet.*/}
+{/**/}
+import Groups from '../../pages/Groups/Groups';
+
 import Signup from '../../pages/Signup/Signup';
 import Login from '../../pages/Login/Login';
 import Logout from '../../pages/Logout/Logout';
@@ -79,7 +80,9 @@ class App extends React.Component {
                 <Authenticated exact path="/ideas/:_id/edit" component={EditIdea} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
 
-                {/*<Authenticated exact path="/groups" component={Groups} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />*/}
+                <Authenticated exact path="/groups" component={Groups} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                {/*<Route name="groups" path="/groups" component={Groups}/>*/}
+
 
                 <Public path="/signup" component={Signup} {...props} {...state} />
                 <Public path="/login" component={Login} {...props} {...state} />
