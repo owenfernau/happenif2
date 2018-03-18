@@ -34,23 +34,47 @@ import Loading from '../../components/Loading/Loading';
 
 const Groups = (
   loading, ideas, match, history,
-) => (
-  <div>
+) =>
+  <div className="groups">
   <h1>HI BYE</h1>
   <h1>{Groups.length}</h1>
+  {/*
+    the Group.length property is connected to
+    those four properties: loading, ideas,
+    match, history. Can't really tell if any of
+    of those properties are defined. I think not
+    though. It's not getting the same
+    information that the ideas page has.
+  */}
+  {/*<h1>{match.url}</h1>*/}
+  {Groups.length?
+    <h1>Love</h1>
 
-<div>
-    <tr>
-      <th>Group</th>
-    </tr>
-</div>
+  : <Alert bsStyle="warning">No ideas yet!</Alert>}
+  {/*<h1>{Groups.ideas.map(({
+    _id, idea, group, votes, createdAt, updatedAt,
+  }) => (
+    <tr key={_id}>
+      <td>{idea}</td>
+      </tr>
+    ))}
+*/}
 
-</div>
-);
+  <h1></h1>
+  <h1>YO</h1>
+    </div>
+
+  Groups.propTypes = {
+      loading: PropTypes.bool.isRequired,
+      ideas: PropTypes.arrayOf(PropTypes.object).isRequired,
+      match: PropTypes.object.isRequired,
+      history: PropTypes.object.isRequired,
+    };
+
 
 export default withTracker(() => {
   const subscription = Meteor.subscribe('ideas');
-  console.log("hi")
+  console.log("hi");
   return {
     loading: !subscription.ready(),
     ideas: IdeasCollection.find().fetch(), // [{ }]
