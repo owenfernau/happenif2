@@ -8,9 +8,28 @@ const AuthenticatedNavigation = ({ name, history }) => (
   <div>
     <Nav>
       <LinkContainer to="/documents">
-        <NavItem eventKey={1} href="/documents">Documents</NavItem>
+        <NavItem eventKey={1} href="/documents">documents</NavItem>
       </LinkContainer>
     </Nav>
+    {/*//adding groups and ideas bars
+      what does eventKey mean?
+      */}
+    <Nav>
+      <LinkContainer to="/ideas">
+        <NavItem eventKey={1} href="/ideas">ideas</NavItem>
+      </LinkContainer>
+    </Nav>
+
+    {/*/
+      there isn't a groups page yet...
+      */}
+    <Nav>
+      <LinkContainer to="/groups">
+        <NavItem eventKey={1} href="/groups">groups</NavItem>
+      </LinkContainer>
+    </Nav>
+
+
     <Nav pullRight>
       <NavDropdown eventKey={2} title={name} id="user-nav-dropdown">
         <LinkContainer to="/profile">

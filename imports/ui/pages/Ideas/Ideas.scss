@@ -1,0 +1,18 @@
+.Ideas .upvote,
+.Ideas .downvote,
+.Ideas .votes {
+  display: block;
+  text-align: center;
+  margin: 0;
+  width: 100%;
+}
+
+.Ideas .votes {
+  margin: 0;
+}
+
+.Ideas .upvote,
+.Ideas .downvote {
+  background: none;
+  border: none;
+}
