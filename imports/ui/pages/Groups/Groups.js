@@ -25,58 +25,29 @@ import { Table, Alert, Button } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Bert } from 'meteor/themeteorchef:bert';
-import IdeasCollection from '../../../api/Ideas/Ideas';
-{/**/}
-import { timeago, monthDayYearAtTime } from '../../../modules/dates';
-import Loading from '../../components/Loading/Loading';
+import GroupsCollection from '../../../api/Groups/Groups';
 
-
-
-const Groups = (
-  loading, ideas, match, history,
-) =>
+const Groups = ({ loading, groups, match, history }) => (
   <div className="groups">
-  <h1>HI BYE</h1>
-  <h1>{Groups.length}</h1>
-  {/*
-    the Group.length property is connected to
-    those four properties: loading, ideas,
-    match, history. Can't really tell if any of
-    of those properties are defined. I think not
-    though. It's not getting the same
-    information that the ideas page has.
-  */}
-  {/*<h1>{match.url}</h1>*/}
-  {Groups.length?
-    <h1>Love</h1>
-
-  : <Alert bsStyle="warning">No ideas yet!</Alert>}
-  {/*<h1>{Groups.ideas.map(({
-    _id, idea, group, votes, createdAt, updatedAt,
-  }) => (
-    <tr key={_id}>
-      <td>{idea}</td>
-      </tr>
-    ))}
-*/}
-
-  <h1></h1>
-  <h1>YO</h1>
-    </div>
+    {groups.map((group) => {
+      return (<div>{group.name}</div>);
+    })}
+  </div>
+)
 
   Groups.propTypes = {
       loading: PropTypes.bool.isRequired,
-      ideas: PropTypes.arrayOf(PropTypes.object).isRequired,
+      groups: PropTypes.arrayOf(PropTypes.object).isRequired,
       match: PropTypes.object.isRequired,
       history: PropTypes.object.isRequired,
     };
 
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('ideas');
-  console.log("hi");
+  const subscription = Meteor.subscribe('groups');
+  console.log(GroupsCollection.find().fetch());
   return {
     loading: !subscription.ready(),
-    ideas: IdeasCollection.find().fetch(), // [{ }]
+    groups: GroupsCollection.find().fetch(), // [{ }]
   };
 })(Groups);

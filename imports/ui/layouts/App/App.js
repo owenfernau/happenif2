@@ -23,6 +23,7 @@ import Ideas from '../../pages/Ideas/Ideas';
 {/*this import below might not work yet.*/}
 {/**/}
 import Groups from '../../pages/Groups/Groups';
+import Create from '../../pages/Create/Create';
 
 import Signup from '../../pages/Signup/Signup';
 import Login from '../../pages/Login/Login';
@@ -85,6 +86,8 @@ class App extends React.Component {
 
 
                 <Public path="/signup" component={Signup} {...props} {...state} />
+                <Authenticated path="/create" component={Create} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+
                 <Public path="/login" component={Login} {...props} {...state} />
                 <Route path="/logout" render={routeProps => <Logout {...routeProps} setAfterLoginPath={setAfterLoginPath} />} {...props} {...state} />
                 <Route name="verify-email" path="/verify-email/:token" component={VerifyEmail} />
@@ -133,6 +136,7 @@ export default withTracker(() => {
     roles: !loading && Roles.getRolesForUser(userId),
     userId,
     emailAddress,
+    owen: "hello",
     emailVerified: user && user.emails ? user && user.emails && user.emails[0].verified : true,
   };
 })(App);
