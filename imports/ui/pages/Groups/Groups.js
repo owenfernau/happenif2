@@ -28,10 +28,57 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import GroupsCollection from '../../../api/Groups/Groups';
 
 const Groups = ({ loading, groups, match, history }) => (
-  <div className="groups">
-    {groups.map((group) => {
-      return (<div>{group.name}</div>);
-    })}
+
+
+  <div className="Groups">
+    <div className="page-header clearfix">
+      <h4 className="pull-left">My Groups</h4>
+      <Link className="btn btn-success pull-right" to={`${match.url}/propose`}>New Group</Link>
+    </div>
+    {groups.length ?
+      <Table responsive>
+        <thead>
+          <tr>
+
+            <th>Group</th>
+            <th>Group</th>
+            <th>Last Updated</th>
+            <th>Created</th>
+            <th />
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          {groups.map(({
+            _id, name,
+          }) => (
+            <tr key={_id}>
+              <td>{name}</td>
+              <td>DOPE</td>
+              <td>I LOVE YOU</td>
+              <td>SICK</td>
+              <td>
+                <Button
+                  bsStyle="primary"
+                  onClick={() => history.push(`${match.url}/${_id}`)}
+                  block
+                >
+                  View
+                </Button>
+              </td>
+              <td>
+                <Button
+                  bsStyle="danger"
+                  onClick={() => handleRemove(_id)}
+                  block
+                >
+                  Delete
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table> : <Alert bsStyle="warning">No ideas yet!</Alert>}
   </div>
 )
 
