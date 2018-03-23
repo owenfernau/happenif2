@@ -23,6 +23,7 @@ import Ideas from '../../pages/Ideas/Ideas';
 {/*this import below might not work yet.*/}
 {/**/}
 import Groups from '../../pages/Groups/Groups';
+import ViewGroup from '../../pages/ViewGroup/ViewGroup';
 import Create from '../../pages/Create/Create';
 
 import Signup from '../../pages/Signup/Signup';
@@ -82,6 +83,7 @@ class App extends React.Component {
                 <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
 
                 <Authenticated exact path="/groups" component={Groups} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/groups/:_id" component={ViewGroup} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 {/*<Route name="groups" path="/groups" component={Groups}/>*/}
 
 

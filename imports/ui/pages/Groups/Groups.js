@@ -41,9 +41,6 @@ const Groups = ({ loading, groups, match, history }) => (
           <tr>
 
             <th>Group</th>
-            <th>Group</th>
-            <th>Last Updated</th>
-            <th>Created</th>
             <th />
             <th />
           </tr>
@@ -54,9 +51,6 @@ const Groups = ({ loading, groups, match, history }) => (
           }) => (
             <tr key={_id}>
               <td>{name}</td>
-              <td>DOPE</td>
-              <td>I LOVE YOU</td>
-              <td>SICK</td>
               <td>
                 <Button
                   bsStyle="primary"
