@@ -10,12 +10,12 @@ class ProposeIdea extends React.Component {
   }
 
   render() {
-    const {history} = this.props; // Destructuring. Assume this.props is a bunch of grapes and the { history } part is us plucking off the "history" grape. 
+    const { match, history } = this.props; // Destructuring. Assume this.props is a bunch of grapes and the { history } part is us plucking off the "history" grape. 
     return (
 
       <div className="ProposeIdea">
         <h3 className="page-header">Propose an Idea</h3>
-        <IdeaEditor history={history} />
+        <IdeaEditor groupId={match.params._id} history={history} />
       </div>
 
     );

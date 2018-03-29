@@ -56,7 +56,7 @@ const Groups = ({ loading, groups, match, history }) => (
           }) => (
             <tr key={_id}>
               <td>{name}</td>
-              <td>{users.length}</td>
+              <td>{users && users.length}</td>
               <td>
                 <Button
                   bsStyle="primary"

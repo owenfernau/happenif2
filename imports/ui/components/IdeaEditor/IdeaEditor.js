@@ -20,9 +20,6 @@ class IdeaEditor extends React.Component {
         reasoning: {
           required: true,
         },
-        group: {
-          required: true,
-        }
       },
       messages: {
         idea: {
@@ -31,24 +28,20 @@ class IdeaEditor extends React.Component {
         reasoning: {
           required: 'Dude. What\'s your reasoning?',
         },
-        group: {
-          required: 'What organization is this idea for?',
-        }
-
       },
       submitHandler() { component.handleSubmit(component.form); },
     });
   }
 
   handleSubmit(form) {
-    const { history } = this.props;
+    const { groupId, history } = this.props;
     const existingIdea = this.props.idea && this.props.idea._id;
     const methodToCall = existingIdea ? 'ideas.update' : 'ideas.insert';
     const idea = {
       idea: form.idea.value.trim(),
       reasoning: form.reasoning.value.trim(),
       /*adding the group thing.*/
-      group: form.group.value.trim()
+      group: groupId,
     };
 
     if (existingIdea) idea._id = existingIdea;
@@ -60,7 +53,7 @@ class IdeaEditor extends React.Component {
         const confirmation = existingIdea ? 'Idea updated!' : 'Idea added!';
         this.form.reset();
         Bert.alert(confirmation, 'success');
-        history.push(`/ideas/${ideaId}`);
+        history.push(`/groups/${groupId}/ideas/${ideaId}`);
       }
     });
   }
@@ -89,16 +82,6 @@ class IdeaEditor extends React.Component {
           />
         </FormGroup>
         {/*trying to add a group formGroup*/}
-        <FormGroup>
-          <ControlLabel>group</ControlLabel>
-          <textarea
-            className="form-control"
-            name="group"
-
-            defaultValue={idea && idea.group}
-            placeholder="The group for which your idea is relevant."
-          />
-        </FormGroup>
         {/*Might not work.*/}
         <Button type="submit" bsStyle="success">
           {idea && idea._id ? 'Save Changes' : 'Add Idea'}
@@ -115,6 +98,7 @@ IdeaEditor.defaultProps = {
 IdeaEditor.propTypes = {
   idea: PropTypes.object,
   history: PropTypes.object.isRequired,
+  groupId: PropTypes.string.isRequired,
 };
 
 export default IdeaEditor;

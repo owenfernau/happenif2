@@ -6,10 +6,10 @@ import Ideas from '../../../api/Ideas/Ideas';
 import IdeaEditor from '../../components/IdeaEditor/IdeaEditor';
 import NotFound from '../NotFound/NotFound';
 
-const EditIdea = ({ idea, history }) => (idea ? (
+const EditIdea = ({ match, idea, history }) => (idea ? (
   <div className="EditIdea">
     <h4 className="page-header">{`Editing "${idea.idea}"`}</h4>
-    <IdeaEditor idea={idea} history={history} />
+    <IdeaEditor groupId={match.params.groupId} idea={idea} history={history} />
   </div>
 ) : <NotFound />);
 
@@ -23,9 +23,11 @@ EditIdea.propTypes = {
 };
 
 export default withTracker(({ match }) => {
-  const ideaId = match.params._id;
-  const subscription = Meteor.subscribe('ideas.view', ideaId);
-
+  const ideaId = match.params.ideaId;
+  const groupId = match.params.groupId;
+  console.log(ideaId);
+  const subscription = Meteor.subscribe('ideas.view', ideaId, groupId);
+  console.log(Ideas.findOne(ideaId));
   return {
     loading: !subscription.ready(),
     idea: Ideas.findOne(ideaId),

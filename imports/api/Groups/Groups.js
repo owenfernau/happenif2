@@ -20,6 +20,10 @@ const GroupsSchema = new SimpleSchema({
     type: String,
     label: 'The name of the group.',
   },
+  creator: {
+    type: String,
+    label: 'The person who created this group.',
+  },
   users: {
     type: Array,
     label: 'The users who belong to this group.',

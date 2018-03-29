@@ -5,6 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
 import Ideas from '../../../api/Ideas/Ideas';
+import Groups from '../../../api/Groups/Groups';
 import NotFound from '../NotFound/NotFound';
 import Loading from '../../components/Loading/Loading';
 
@@ -31,7 +32,7 @@ const vote = (type, ideaId) => {
   });
 };
 
-const renderIdea = (idea, match, history) => (idea ? (
+const renderIdea = (idea, groupName, match, history) => (idea ? (
   <div className="ViewIdea">
     <div className="page-header clearfix">
       <h3 className="pull-left">{ idea && idea.idea }</h3>
@@ -43,7 +44,7 @@ const renderIdea = (idea, match, history) => (idea ? (
           </Button>
         </ButtonGroup>
       </ButtonToolbar>
-      <h6>{ idea && "      #" && idea.group}</h6>
+      <h6>{groupName}</h6>
     </div>
     { idea && idea.reasoning }
     <h5>VOTE COUNT: { idea && idea.votes}</h5>
@@ -60,9 +61,9 @@ const renderIdea = (idea, match, history) => (idea ? (
 ) : <NotFound />);
 
 const ViewIdea = ({
-  loading, idea, match, history,
+  loading, idea, groupName, match, history,
 }) => (
-  !loading ? renderIdea(idea, match, history) : <Loading />
+  !loading ? renderIdea(idea, groupName, match, history) : <Loading />
 );
 
 ViewIdea.defaultProps = {
@@ -77,11 +78,14 @@ ViewIdea.propTypes = {
 };
 
 export default withTracker(({ match }) => {
-  const ideaId = match.params._id;
-  const subscription = Meteor.subscribe('ideas.view', ideaId);
+  const groupId = match.params.groupId;
+  const ideaId = match.params.ideaId;
+  const subscription = Meteor.subscribe('ideas.view', ideaId, groupId);
+  const group = Groups.findOne(groupId);
 
   return {
     loading: !subscription.ready(),
     idea: Ideas.findOne(ideaId),
+    groupName: group && group.name,
   };
 })(ViewIdea);
