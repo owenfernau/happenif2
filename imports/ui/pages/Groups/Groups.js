@@ -26,6 +26,10 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Bert } from 'meteor/themeteorchef:bert';
 import GroupsCollection from '../../../api/Groups/Groups';
+import { timeago, monthDayYearAtTime } from '../../../modules/dates';
+import Loading from '../../components/Loading/Loading';
+
+import './Groups.scss';
 
 const Groups = ({ loading, groups, match, history }) => (
 
@@ -41,16 +45,18 @@ const Groups = ({ loading, groups, match, history }) => (
           <tr>
 
             <th>Group</th>
+            <th># of Users</th>
             <th />
             <th />
           </tr>
         </thead>
         <tbody>
           {groups.map(({
-            _id, name,
+            _id, name, users,
           }) => (
             <tr key={_id}>
               <td>{name}</td>
+              <td>{users.length}</td>
               <td>
                 <Button
                   bsStyle="primary"
@@ -72,7 +78,7 @@ const Groups = ({ loading, groups, match, history }) => (
             </tr>
           ))}
         </tbody>
-      </Table> : <Alert bsStyle="warning">No ideas yet!</Alert>}
+      </Table> : <Alert bsStyle="warning">no groups yet!</Alert>}
   </div>
 )
 
@@ -87,6 +93,7 @@ const Groups = ({ loading, groups, match, history }) => (
 export default withTracker(() => {
   const subscription = Meteor.subscribe('groups');
   console.log(GroupsCollection.find().fetch());
+  console.log(history);
   return {
     loading: !subscription.ready(),
     groups: GroupsCollection.find().fetch(), // [{ }]
