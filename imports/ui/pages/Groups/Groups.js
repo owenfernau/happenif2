@@ -48,6 +48,7 @@ const Groups = ({ loading, groups, match, history }) => (
             <th># of Users</th>
             <th />
             <th />
+            <th />
           </tr>
         </thead>
         <tbody>
@@ -57,6 +58,15 @@ const Groups = ({ loading, groups, match, history }) => (
             <tr key={_id}>
               <td>{name}</td>
               <td>{users && users.length}</td>
+              <td>
+                <Button
+                  bsStyle="primary"
+                  onClick={() => history.push(`${match.url}/${_id}/invite`)}
+                  block
+                >
+                  Invite More Folks
+                </Button>
+              </td>
               <td>
                 <Button
                   bsStyle="primary"

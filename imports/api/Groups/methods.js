@@ -8,7 +8,7 @@ Meteor.methods({
     check(groupName, String);
 
     try {
-      return Groups.insert({ name: groupName, users: [this.userId] });
+      return Groups.insert({ name: groupName, users: [this.userId], creator: this.userId });
     } catch (exception) {
       handleMethodException(exception);
     }
