@@ -88,7 +88,7 @@ class App extends React.Component {
                 <Authenticated exact path="/groups/:_id/propose" component={ProposeIdea} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/groups/:groupId/ideas/:ideaId" component={ViewIdea} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 <Authenticated exact path="/groups/:groupId/ideas/:ideaId/edit" component={EditIdea} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-                <Authenticated exact path="/groups/:groupId/invite" component={EditIdea} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+                <Authenticated exact path="/groups/:groupId/invite" component={Invite} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
                 {/*<Route name="groups" path="/groups" component={Groups}/>*/}
 
 

@@ -52,19 +52,14 @@ class InvitationEditor extends React.Component {
           />
         </FormGroup>
         <Button type="submit" bsStyle="success">
-          {doc && doc._id ? 'Save Changes' : 'Add Document'}
+          {'Add Invite'}
         </Button>
       </form>
     );
   }
 }
 
-InvitationEditor.defaultProps = {
-  doc: { title: '', body: '' },
-};
-
 InvitationEditor.propTypes = {
-  doc: PropTypes.object,
   history: PropTypes.object.isRequired,
 };
 
